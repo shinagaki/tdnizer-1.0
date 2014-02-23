@@ -1,11 +1,13 @@
 {
   "name": "tdnizer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "express": "~3.4.3",
     "lodash": "~2.4.1",
     "mongoose": "~3.5.5",
-    "jade": "latest"
+    "jade": "latest",
+    "async": "~0.2.10",
+    "coffee-script": "~1.7.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

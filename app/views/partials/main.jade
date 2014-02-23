@@ -1,20 +1,29 @@
 div(ng-include='\'partials/navbar\'')
 
-.jumbotron
-  h1
-    | 'Allo, 'Allo!
+.row
+  .col-xs-6
+    input.form-control.input-lg(placeholder="tdn", ng-model="query", ng-keyup="search()", ng-change="search()")
+  .col-xs-6
+    label.switch-light.well
+      input(type="checkbox", ng-model="tdnize", ng-value="true", ng-change="search()")
+      span
+        span Tdn
+        span 多田野
+      a.btn.btn-primary
+    .tdnize-to(ng-model="tdnize", ng-value="true")
 
-  p.lead
-    <img src="images/yeoman.png" alt="I'm Yeoman">
-    br
-    | Always a pleasure scaffolding your apps.
-  p
-    a.btn.btn-lg.btn-success(ng-href='#') Splendid!
-    
-.row.marketing
-  div(ng-repeat='thing in awesomeThings')
-    h4 {{thing.name}}
-    p {{thing.info}}
+.results
+  .row.result(ng-repeat="dic in dics", ng-hide="searching")
+    h3.result__name
+      a(href="http://dic.nicovideo.jp/a/{{dic.name|encodeURI}}")
+        span(ng-bind-html="dic.name|highlight:query")
+    p.result__tdn(ng-bind-html="dic.tdn|highlight:query")
+    p.result__yomi(ng-bind-html="dic.yomi|highlight:query")
+
+  .loading(ng-show="searching")
+    .spinner
+      .dot1
+      .dot2
 
 .footer
   p ♥ from the Yeoman team
