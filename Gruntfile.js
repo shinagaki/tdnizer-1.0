@@ -55,9 +55,13 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
       },
-      compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+      // compass: {
+      //   files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+      //   tasks: ['compass:server', 'autoprefixer']
+      // },
+      stylus: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.styl'],
+        tasks: ['stylus:server', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -69,7 +73,7 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
         ],
-      
+
         options: {
           livereload: true
         }
@@ -205,6 +209,30 @@ module.exports = function (grunt) {
         options: {
           debugInfo: true
         }
+      }
+    },
+
+    // Stylus
+    stylus: {
+      dist: {
+        // options: {
+        //   compress: true,
+        // },
+        expand: true,
+        cwd: '<%= yeoman.app %>/styles',
+        src: '{,*/}*.styl',
+        dest: '.tmp/styles',
+        ext: '.css'
+      },
+      server: {
+        options: {
+          compress: false,
+        },
+        expand: true,
+        cwd: '<%= yeoman.app %>/styles',
+        src: '{,*/}*.styl',
+        dest: '.tmp/styles',
+        ext: '.css'
       }
     },
 
@@ -351,15 +379,18 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'compass:server'
+        // 'compass:server'
+        'stylus:server'
       ],
       test: [
         'coffee',
-        'compass'
+        // 'compass'
+        'stylus'
       ],
       dist: [
         'coffee',
-        'compass:dist',
+        // 'compass:dist',
+        'stylus:dist',
         'imagemin',
         'svgmin',
         'htmlmin'

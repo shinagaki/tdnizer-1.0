@@ -4,13 +4,13 @@ div(ng-include='\'partials/navbar\'')
   .col-xs-6
     input.form-control.input-lg(placeholder="tdn", ng-model="query", ng-keyup="search()", ng-change="search()")
   .col-xs-6
-    label.switch-light.well
-      input(type="checkbox", ng-model="tdnize", ng-value="true", ng-change="search()")
+    label.switch-light.progress.progress-striped.active.well
+      input(type="checkbox", ng-model="tdnize", ng-change="search()")
       span
-        span Tdn
-        span 多田野
-      a.btn.btn-primary
-    .tdnize-to(ng-model="tdnize", ng-value="true")
+        span 多田野 > Tdn
+        span Tdn > 多田野
+      a.progress-bar.progress-bar-primary
+    .tdnize-to(ng-model="tdnize")
 
 .results
   .row.result(ng-repeat="dic in dics", ng-hide="searching")

@@ -1,0 +1,137 @@
+@import 'nib'
+
+.browsehappy
+  margin 0.2em 0
+  background #ccc
+  color #000
+  padding 0.2em 0
+
+body
+  padding-top 20px
+  padding-bottom 20px
+  font-family "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif
+
+h1, h2, h3, h4, h5, h6
+  font-family "ヒラギノ明朝 Pro W6", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", serif
+
+em
+  color #ffff00
+  font-style normal
+
+.header, .footer
+  padding-left 15px
+  padding-right 15px
+
+.header
+  border-bottom 1px solid #e5e5e5
+  h1
+    margin-top 0
+    margin-bottom 0
+    line-height 40px
+    padding-bottom 19px
+
+.footer
+  padding-top 19px
+  color #777
+  border-top 1px solid #e5e5e5
+
+.results
+  .result
+    .result__popular
+      text-align center
+      font-size 40px
+      line-height 130%
+    .result__tdn
+      font-size 15px
+    .result__name
+      font-size 30px
+    .result__kana
+      font-size 20px
+
+.spinner
+  margin 100px auto
+  width 40px
+  height 40px
+  position relative
+  text-align center
+  animation rotate 2.0s infinite linear
+  .dot1, .dot2
+    width 60%
+    height 60%
+    display inline-block
+    position absolute
+    top 0
+    background-color #2980b9
+    border-radius 50%
+    animation bounce 2.0s infinite ease-in-out
+  .dot2
+    top auto
+    bottom 0px
+    animation-delay -1.0s
+
+.checkbox input
+  display none
+
+.checkbox label.btn__round
+  display block
+  position relative
+  width 80px
+  height 80px
+  line-height 80px
+  color #fff
+  border-radius 50%
+  box-shadow 0 5px 0 #008469, 0 -1px 0 rgba(#fff, 0.3) inset
+  background #16a085
+  & input:checked
+    box-shadow 0 1px 0 #008469, 0 -1px 0 rgba(#fff, 0.3) inset
+    top 4px
+
+.tdnize-from
+  input
+    display none
+  label
+    cursor pointer
+    padding 5px 10px
+    float left
+    background #95a5a6
+    color #fff
+    &first-of-type
+      border-radius 5px 0 0 5px
+    &last-of-type
+      border-radius 0 5px 5px 0
+  input:checked + label
+    background #2980b9
+    color #fff
+
+.tdnize-to
+  font-size 40px
+  color #95a5a6
+
+.switch-light
+  span
+    line-height 1
+  a
+    color #fff
+
+@keyframes rotate
+  100%
+    transform rotate(360deg)
+
+@keyframes bounce
+  0%, 100%
+    transform scale(0.0)
+  50%
+    transform scale(1.0)
+
+@media screen and (min-width 768px)
+  .container
+    max-width 730px
+  .header,
+  .marketing,
+  .footer
+    padding-left 0
+    padding-right 0
+  .header
+    margin-bottom 30px
+  .jumbotron
+    border-bottom 0
