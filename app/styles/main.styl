@@ -1,5 +1,17 @@
 @import 'nib'
 
+$color--clouds = #ECF0F1
+$color--silver = #BDC3C7
+$color--concrete = #95A5A6
+$color--asbestos = #7F8C8D
+$color--wet-asphalt = #34495E
+$color--midnight-blue = #2C3E50
+
+$color--peter-river = #3498DB
+$color--belize-hole = #2980B9
+$color--amethyst = #9B59B6
+$color--wisteria = #8E44AD
+
 .browsehappy
   margin 0.2em 0
   background #ccc
@@ -7,46 +19,49 @@
   padding 0.2em 0
 
 body
-  padding-top 20px
-  padding-bottom 20px
   font-family "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif
+  background $color--wet-asphalt
+  color $color--silver
 
 h1, h2, h3, h4, h5, h6
   font-family "ヒラギノ明朝 Pro W6", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", serif
 
 em
-  color #ffff00
+  color #f1c40f
   font-style normal
 
-.header, .footer
-  padding-left 15px
-  padding-right 15px
-
 .header
-  border-bottom 1px solid #e5e5e5
+  background $color--midnight-blue
+  padding 0 0 20px 0
   h1
-    margin-top 0
-    margin-bottom 0
     line-height 40px
-    padding-bottom 19px
+    color #fff
+
+.contents
+  padding 20px 0
 
 .footer
-  padding-top 19px
-  color #777
-  border-top 1px solid #e5e5e5
+  background $color--midnight-blue
+  padding 20px 0 0 0
+  color #fff
 
 .results
   .result
-    .result__popular
-      text-align center
-      font-size 40px
-      line-height 130%
+    margin 10px 0
     .result__tdn
       font-size 15px
+      color #27ae60
     .result__name
       font-size 30px
-    .result__kana
-      font-size 20px
+      margin-bottom 0px
+      a
+        color lighten($color--peter-river, 10%)
+    .result__yomi
+      font-size 15px
+  .result-na
+    padding 30px 0
+    p
+      color $color--clouds
 
 .spinner
   margin 100px auto
@@ -69,49 +84,43 @@ em
     bottom 0px
     animation-delay -1.0s
 
-.checkbox input
-  display none
-
-.checkbox label.btn__round
-  display block
+.onoffswitch
   position relative
-  width 80px
-  height 80px
-  line-height 80px
-  color #fff
-  border-radius 50%
-  box-shadow 0 5px 0 #008469, 0 -1px 0 rgba(#fff, 0.3) inset
-  background #16a085
-  & input:checked
-    box-shadow 0 1px 0 #008469, 0 -1px 0 rgba(#fff, 0.3) inset
-    top 4px
-
-.tdnize-from
-  input
+  width 180px
+  user-select none
+  .onoffswitch-checkbox
     display none
-  label
+    &:checked
+      & + .onoffswitch-label
+        .onoffswitch-inner
+          margin-left 0
+  .onoffswitch-label
+    display block
+    overflow hidden
     cursor pointer
-    padding 5px 10px
+    border-radius 11px
+  .onoffswitch-inner
+    width 200%
+    margin-left -100%
+    text-align center
+    transition margin 0.3s ease-in 0s
+    color #fff
+    &:before
+      content "多田野 → Tdn"
+      background-color $color--peter-river
+    &:after
+      content "Tdn → 多田野"
+      background-color $color--amethyst
+    &:hover
+      opacity 0.8
+  .onoffswitch-inner:before, .onoffswitch-inner:after
     float left
-    background #95a5a6
-    color #fff
-    &first-of-type
-      border-radius 5px 0 0 5px
-    &last-of-type
-      border-radius 0 5px 5px 0
-  input:checked + label
-    background #2980b9
-    color #fff
-
-.tdnize-to
-  font-size 40px
-  color #95a5a6
-
-.switch-light
-  span
-    line-height 1
-  a
-    color #fff
+    width 50%
+    line-height 46px
+    font-size 18px
+    color white
+    font-weight bold
+    box-sizing border-box
 
 @keyframes rotate
   100%
@@ -122,16 +131,3 @@ em
     transform scale(0.0)
   50%
     transform scale(1.0)
-
-@media screen and (min-width 768px)
-  .container
-    max-width 730px
-  .header,
-  .marketing,
-  .footer
-    padding-left 0
-    padding-right 0
-  .header
-    margin-bottom 30px
-  .jumbotron
-    border-bottom 0

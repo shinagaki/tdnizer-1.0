@@ -1,33 +1,46 @@
 'use strict'
 
-ajax = ($scope, $http) ->
+getDics = ($scope, $http) ->
   $scope.searching = true
+  $scope.resultNA = false
   params = {}
   if $scope.tdnize
-    params = tdn: $scope.query
+    params = name: $scope.word
   else
-    params = name: $scope.query
-
+    params = tdn: $scope.word
   $http.get('/api/tdnizer',
     params: params
   ).success (dics) ->
     $scope.dics = dics
+    if dics.length is 0
+      $scope.resultNA = true
     $scope.searching = false
 
 angular.module('tdnizerApp').controller('MainCtrl', ($scope, $http) ->
-  $scope.query = ''
+  $scope.word = ''
   $scope.tdnize = true
   $scope.dics = []
-  queryPrev = ''
+  $scope.resultNA = true
+  wordPrev = ''
   tdnizePrev = func = null
 
+  $scope.switchTdnize = ->
+    if $scope.tdnize
+      angular.element('#input--word').attr('placeholder', '多田野')
+    else
+      angular.element('#input--word').attr('placeholder', 'tdn')
+    $scope.search()
+
   $scope.search = ->
-    if queryPrev isnt $scope.query or tdnizePrev isnt $scope.tdnize
+    if $scope.word is ''
+      $scope.resultNA = true
+      $scope.dics = []
+    else if $scope.word and wordPrev isnt $scope.word or tdnizePrev isnt $scope.tdnize
       clearTimeout func
       func = setTimeout ->
-        ajax $scope, $http
+        getDics $scope, $http
       , 300
-    queryPrev = $scope.query
+    wordPrev = $scope.word
     tdnizePrev = $scope.tdnizePrev
 ).filter('encodeURI', ->
   window.encodeURIComponent
